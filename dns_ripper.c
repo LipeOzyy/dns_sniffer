@@ -1,4 +1,4 @@
-# modo de usar: ./dns_sniffer exemplo.com wordlist.txt 
+//modo de usar: ./dns_sniffer exemplo.com wordlist.txt 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
