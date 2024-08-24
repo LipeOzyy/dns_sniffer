@@ -1,3 +1,4 @@
+# modo de usar: ./dns_sniffer exemplo.com wordlist.txt 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,7 +20,6 @@ void dns_bruteforce(const char *domain, const char *wordlist_file) {
     char hostname[512];
     struct hostent *host;
 
-    // Abre o arquivo da wordlist
     file = fopen(wordlist_file, "r");
     if (file == NULL) {
         perror("Erro ao abrir o arquivo da wordlist");
@@ -27,14 +27,14 @@ void dns_bruteforce(const char *domain, const char *wordlist_file) {
     }
 
     while (fgets(subdomain, sizeof(subdomain), file)) {
-        // Remove o caractere de nova linha
+        
         subdomain[strcspn(subdomain, "\n")] = '\0';
 
         snprintf(hostname, sizeof(hostname), "%s.%s", subdomain, domain);
 
         host = gethostbyname(hostname);
         if (host != NULL) {
-            // Exibe o subdomínio encontrado e seu endereço IP
+
             printf("Subdomínio encontrado: %s -> %s\n", hostname, inet_ntoa(*(struct in_addr *)host->h_addr));
         }
     }
